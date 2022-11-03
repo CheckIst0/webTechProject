@@ -24,8 +24,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'ma.glasnost.orika:orika-core:1.5.4'
-	implementation 'io.springfox:springfox-swagger2:3.0.0'
-	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.12'
 	runtimeOnly 'org.postgresql:postgresql'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -33,9 +32,9 @@ dependencies {
 }
 
 flyway {
-	url = 'jdbc:postgresql://localhost:5432/projectdb'
+	url = 'jdbc:postgresql://localhost:5431/projectdb'
 	user = 'projectuser'
-	password = 'qwerty'
+	password = 'qwerty123'
 	schemas = ['public']
 }
 

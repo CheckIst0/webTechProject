@@ -1,28 +1,32 @@
 package web.tech.project.api.core.model;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.Lob;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class MenuDto {
-//    @ApiModelProperty(value = "ID записи")
+    @Schema(description = "ID записи")
     private Long id;
-//    @ApiModelProperty(value = "Название блюда в меню")
+    @Schema(description = "Название блюда в меню")
     private String title;
-//    @ApiModelProperty(value = "Категория")
+    @Schema(description = "Категория")
     private CategoryDto category;
-//    @ApiModelProperty(value = "Стоимость")
+    @Schema(description = "Стоимость")
     private int price;
-//    @ApiModelProperty(value = "Статус наличия")
+    @Schema(description = "Статус наличия")
     private boolean isAvailable;
-//    @ApiModelProperty(value = "Описание")
+    @Schema(description = "Описание блюда")
     private String description;
-//    @ApiModelProperty(value = "Масса")
+    @Schema(description = "Масса")
     private int mass;
-//    @ApiModelProperty(value = "Путь к картинке")
-    private String imageSource;
+    @Schema(description = "Путь к картинке")
+    private byte[] image;
 }

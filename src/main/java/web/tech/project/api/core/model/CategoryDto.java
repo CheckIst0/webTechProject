@@ -1,6 +1,6 @@
 package web.tech.project.api.core.model;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,8 +9,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class CategoryDto {
-//    @ApiModelProperty(value = "ID записи")
+    @Schema(description = "id записи")
     private Long id;
-//    @ApiModelProperty(value = "Название категории")
+    @Schema(description = "Название категории")
     private String title;
+    @Schema(description = "Картинка категории")
+    private byte[] img;
+    @Schema(description = "Техническая информация")
+    private String name;
 }

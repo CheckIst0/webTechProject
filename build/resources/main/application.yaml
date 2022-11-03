@@ -1,5 +1,11 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/projectdb
+    url: jdbc:postgresql://localhost:5431/projectdb
     username: projectuser
-    password: qwerty
+    password: qwerty123
+
+springdoc:
+  packages-to-scan:
+    - web.tech.project
+  paths-to-match:
+    - "/api/**"

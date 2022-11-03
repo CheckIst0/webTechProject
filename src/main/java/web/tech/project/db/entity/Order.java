@@ -27,4 +27,7 @@ public class Order {
     @JoinColumn(name = "menu_id")
     private Menu menu;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "status_id")
+    private Status status;
 }

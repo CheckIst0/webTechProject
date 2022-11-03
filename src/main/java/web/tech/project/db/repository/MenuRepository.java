@@ -14,4 +14,7 @@ public interface MenuRepository extends JpaRepository<Menu, Long> {
 
     @Query(value = "Select m.id from menu m", nativeQuery = true)
     List<Long> findAllMenuId();
+
+    @Query(value = "update menu set image = :image where id = :id", nativeQuery = true)
+    void setImageToMenu(@Param("image") byte[] image, @Param("id") Long id);
 }

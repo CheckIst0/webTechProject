@@ -27,14 +27,14 @@ public class SecurityConfig {
     @Bean
     public InMemoryUserDetailsManager userDetailsManager() {
         UserDetails user = User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("password")
+                .username("adamFrank")
+                .password("2Rt3f_m3@3y")
                 .roles("USER")
                 .build();
 
         UserDetails admin = User.withDefaultPasswordEncoder()
-                .username("billy")
-                .password("herrington")
+                .username("CheckIst0")
+                .password("z4:20=)13#V")
                 .roles("ADMIN")
                 .build();
 
@@ -44,11 +44,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         return http
-                .csrf(csrf -> csrf.disable())
+                .cors().and()
+                .csrf().disable()
                 .authorizeRequests(auth -> {
+                    auth.antMatchers("/api/order/**").permitAll();
                     auth.antMatchers(HttpMethod.POST).hasRole("ADMIN");
                     auth.antMatchers(HttpMethod.DELETE).hasRole("ADMIN");
                     auth.antMatchers(HttpMethod.PUT).hasRole("ADMIN");
+                    auth.antMatchers(HttpMethod.GET).permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .httpBasic()

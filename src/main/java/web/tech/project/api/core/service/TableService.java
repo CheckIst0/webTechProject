@@ -23,7 +23,22 @@ public class TableService {
 
     public void takeATable(Long id) {
         Table table = tableRepository.getReferenceById(id);
+        table.setFree(false);
+        tableRepository.save(table);
+    }
+
+    public void freeTable(Long id) {
+        Table table = tableRepository.getReferenceById(id);
         table.setFree(true);
         tableRepository.save(table);
+    }
+
+    public TableDto addTable(TableDto tableDto) {
+        Table table = tableRepository.save(tableMapper.map(tableDto, Table.class));
+        return tableMapper.map(table, TableDto.class);
+    }
+
+    public void deleteTable(Long id) {
+        tableRepository.deleteById(id);
     }
 }
