@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,4 +19,6 @@ public class CategoryDto {
     private byte[] img;
     @Schema(description = "Техническая информация")
     private String name;
+    @Schema(description = "Список позиций меню по данной категории")
+    private List<MenuDto> menus;
 }
