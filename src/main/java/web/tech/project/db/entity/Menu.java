@@ -27,7 +27,7 @@ public class Menu {
     @Type(type = "org.hibernate.type.BinaryType")
     private byte[] image;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id")
-    private Category category;
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "category_id")
+//    private Category category;
 }

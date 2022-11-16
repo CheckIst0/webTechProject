@@ -7,6 +7,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.persistence.Table;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,4 +23,7 @@ public class Category {
     @Type(type = "org.hibernate.type.BinaryType")
     private byte[] img;
     private String name;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "category_id")
+    private List<Menu> menus;
 }

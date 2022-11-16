@@ -18,13 +18,13 @@ public class TableController {
     private TableService tableService;
 
     @Operation(summary = "Получение списка всех столов")
-    @GetMapping("/getAllTables")
+    @GetMapping("/getAll")
     public List<TableDto> getAllTables() {
         return tableService.getAllTables();
     }
 
     @Operation(summary = "Изменение статуса стола с указанным ID на \"занято\"")
-    @PutMapping("/takeATable/{id}")
+    @PutMapping("/{id}/takeATable")
     public void takeATable(@PathVariable Long id) {
         try {
             tableService.takeATable(id);
@@ -34,7 +34,7 @@ public class TableController {
     }
 
     @Operation(summary = "Изменение статуса стола с указанным ID на \"свободно\"")
-    @PutMapping("/freeTable/{id}")
+    @PutMapping("/{id}/freeTable")
     public void freeTable(@PathVariable Long id){
         try {
             tableService.freeTable(id);
@@ -50,7 +50,7 @@ public class TableController {
     }
 
     @Operation(summary = "Удаление столика по ID")
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}/delete")
     public void deleteTable(Long id) {
         try {
             tableService.deleteTable(id);

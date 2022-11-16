@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,8 +17,8 @@ public class OrderDto {
     private String client;
     @Schema(description = "Стол, занятый клиентом")
     private TableDto table;
-    @Schema(description = "Заказанное блюдо")
-    private MenuDto menu;
     @Schema(description = "Статус заказа")
     private StatusDto status;
+    @Schema(description = "Список заказанных блюд")
+    private List<MealDto> meals;
 }

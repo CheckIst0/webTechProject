@@ -1,7 +1,6 @@
 package web.tech.project.api.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
-import org.hibernate.action.internal.EntityActionVetoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import web.tech.project.api.core.errorhandlers.IdNotFoundException;
@@ -24,14 +23,8 @@ public class OrderController {
         return orderService.addOrder(orderDto);
     }
 
-    @Operation(summary = "Добавление списка заказов")
-    @PostMapping("/addOrders")
-    public List<OrderDto> addOrders(@RequestBody List<OrderDto> orderDtoList) {
-        return orderService.addOrders(orderDtoList);
-    }
-
     @Operation(summary = "Получение заказа по ID записи")
-    @GetMapping("/getById/{id}")
+    @GetMapping("/{id}")
     public OrderDto getById(@PathVariable Long id) {
         try {
             return orderService.getById(id);
@@ -40,13 +33,31 @@ public class OrderController {
         }
     }
 
+    @Operation(summary = "Получение всех заказов")
+    @GetMapping("/getAll")
+    public List<OrderDto> getAllOrders() {
+        return orderService.getAllOrders();
+    }
+
     @Operation(summary = "Изменение статуса заказа с указанным ID")
-    @PatchMapping("/changeStatus/{id}")
+    @PatchMapping("/{id}/changeStatus")
     public void changeStatus (@RequestBody OrderDto orderDto, @PathVariable Long id) {
         try {
             orderService.changeStatus(orderDto, id);
         } catch (EntityNotFoundException e) {
             throw new IdNotFoundException(id);
         }
+    }
+
+    @Operation(summary = "Имитация успешной оплаты заказа")
+    @PatchMapping("/{id}/payment/success")
+    public String paymentSuccess(@PathVariable Long id) {
+        return orderService.paymentSuccess(id);
+    }
+
+    @Operation(summary = "Имитация провальной оплаты заказа")
+    @PatchMapping("/{id}/payment/error")
+    public String paymentError(@PathVariable Long id) {
+        return orderService.paymentError(id);
     }
 }

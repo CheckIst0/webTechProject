@@ -17,8 +17,8 @@ public class MenuDto {
     private Long id;
     @Schema(description = "Название блюда в меню")
     private String title;
-    @Schema(description = "Категория")
-    private CategoryDto category;
+//    @Schema(description = "Категория")
+//    private CategoryDto category;
     @Schema(description = "Стоимость")
     private int price;
     @Schema(description = "Статус наличия")
