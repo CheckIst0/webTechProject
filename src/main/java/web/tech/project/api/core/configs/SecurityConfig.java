@@ -47,6 +47,7 @@ public class SecurityConfig {
                     auth.antMatchers("/api/order/**").permitAll();
                     auth.antMatchers("/api/payment/**").permitAll();
                     auth.antMatchers("/api/meal/**").permitAll();
+                    auth.antMatchers("/api/table/**").permitAll();
                     auth.anyRequest().hasRole("ADMIN");
                 })
                 .httpBasic()

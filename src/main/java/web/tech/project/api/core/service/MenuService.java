@@ -50,6 +50,7 @@ public class MenuService {
 
     public MenuDto getById(Long id) {
         Menu menu = menuRepository.getReferenceById(id);
+        menu.setCategory(null);
         return menuMapper.map(menu, MenuDto.class);
     }
 
@@ -58,11 +59,10 @@ public class MenuService {
         if (menuList.isEmpty()) {
             throw new CategoryNotFoundException(categoryId);
         }
+        for (Menu menu : menuList) {
+            menu.setCategory(null);
+        }
         return menuMapper.mapAsList(menuList, MenuDto.class);
-    }
-
-    public void setImageToMenu(byte[] image, Long id) {
-        menuRepository.setImageToMenu(image, id);
     }
 
     public MenuDto updateMenu(MenuDto menuDto, Long id, String source) throws IOException {
@@ -85,6 +85,7 @@ public class MenuService {
         menu.setPrice(menuDto.getPrice());
         menu.setTitle(menuDto.getTitle());
         menuRepository.save(menu);
+        menu.setCategory(null);
         return menuMapper.map(menu, MenuDto.class);
     }
 

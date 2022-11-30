@@ -14,4 +14,6 @@ public class MealDto {
     private Long id;
     @Schema(description = "Блюдо, заказанное клиентом")
     private MenuDto menu;
+    @Schema(description = "ID заказа")
+    private OrderDto order;
 }

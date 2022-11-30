@@ -23,7 +23,8 @@ public class Category {
     @Type(type = "org.hibernate.type.BinaryType")
     private byte[] img;
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "category_id")
+
+    @OneToMany(mappedBy = "category")//cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name = "category_id")
     private List<Menu> menus;
 }

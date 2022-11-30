@@ -21,4 +21,18 @@ public class MealService {
         meals = mealRepository.saveAll(meals);
         return mealMapper.mapAsList(meals, MealDto.class);
     }
+
+//    public MealDto getById(Long id) {
+//        Meal meal = mealRepository.getReferenceById(id);
+//        meal.setOrder(null);
+//        return mealMapper.map(meal, MealDto.class);
+//    }
+//
+//    public List<MealDto> getAll() {
+//        List<Meal> meals = mealRepository.findAll();
+//        for (Meal meal : meals) {
+//            meal.setOrder(null);
+//        }
+//        return mealMapper.mapAsList(meals, MealDto.class);
+//    }
 }

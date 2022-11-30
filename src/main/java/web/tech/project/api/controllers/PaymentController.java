@@ -23,21 +23,16 @@ public class PaymentController {
         HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
         requestFactory.setConnectTimeout(5000);
         requestFactory.setReadTimeout(5000);
-
         restTemplate.setRequestFactory(requestFactory);
 
         SimpleDateFormat format = new SimpleDateFormat("MM/yy");
         format.setLenient(false);
 
-        if (Integer.parseInt(card.getExpiryDate().substring(0, 2)) > 12) {
-            return restTemplate.patchForObject(errorUrl, null, String.class);
-        }
-
         Date date;
         try {
             date = format.parse(card.getExpiryDate());
         } catch (ParseException e) {
-            return restTemplate.getForObject(errorUrl, String.class);
+            return restTemplate.patchForObject(errorUrl, null, String.class);
         }
         Pattern numberPattern = Pattern.compile("^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$");
         Pattern cvcPattern = Pattern.compile("^[0-9]{3}$");

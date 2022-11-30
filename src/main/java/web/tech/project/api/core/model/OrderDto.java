@@ -21,4 +21,5 @@ public class OrderDto {
     private StatusDto status;
     @Schema(description = "Список заказанных блюд")
     private List<MealDto> meals;
+
 }

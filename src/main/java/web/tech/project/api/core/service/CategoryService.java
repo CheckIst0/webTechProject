@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import web.tech.project.api.core.mapper.CategoryMapper;
 import web.tech.project.api.core.model.CategoryDto;
 import web.tech.project.db.entity.Category;
+import web.tech.project.db.entity.Meal;
 import web.tech.project.db.entity.Menu;
+import web.tech.project.db.entity.Order;
 import web.tech.project.db.repository.CategoryRepository;
 
 import javax.imageio.ImageIO;
@@ -27,23 +29,23 @@ public class CategoryService {
     private CategoryMapper categoryMapper;
 
     public List<CategoryDto> getAllCategories() {
+        List<Category> categories = categoryRepository.findAll();
+        for (int i = 0; i < categories.size(); i++) {
+            List<Menu> menus = categories.get(i).getMenus();
+            for (int j = 0; j < menus.size(); j ++) {
+                menus.get(j).setCategory(null);
+            }
+        }
         return categoryMapper.mapAsList(categoryRepository.findAll(), CategoryDto.class);
     }
 
     public CategoryDto getById(Long id) {
         Category result = categoryRepository.getReferenceById(id);
-//        result.setImg(null);
-//        List<Menu> menuList = result.getMenus();
-//        for (int i = 0; i < menuList.size(); i++) {
-//            menuList.get(i).setImage(null);
-//        }
-//        result.setMenus(menuList);
+        List<Menu> menus = result.getMenus();
+        for (int i = 0; i < menus.size(); i++) {
+            menus.get(i).setCategory(null);
+        }
         return categoryMapper.map(result, CategoryDto.class);
-    }
-
-    public String setImageToCategory(byte[] image, Long id) {
-        categoryRepository.setImageToCategory(image, id);
-        return "OK";
     }
 
     public CategoryDto updateCategory(CategoryDto categoryDto, Long id, String source) throws IOException {

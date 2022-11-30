@@ -6,7 +6,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.persistence.Table;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -24,7 +26,7 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "status_id")
     private Status status;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "order_id")
+    @OneToMany(mappedBy = "order")//cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name = "order_id")
     private List<Meal> meals;
 }
